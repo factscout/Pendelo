@@ -10,7 +10,7 @@ import Icon from "./assets/logo.png"
         <!-- Icon-->
         <img :src="Icon" alt="Logo" class="logo">
         <!-- Navigation -->
-        <Navigation/>
+        <Navigation  class="navigation--right"/>
       </aside>
       <main class="content">
         <RouterView/>
@@ -54,7 +54,7 @@ main {
   border-radius: 20px; 
 }
 
-  .sidebar--left {
+.sidebar--left {
     width: 250px; /* Breite der Sidebar */
     position: fixed; /* Fixierte Position, bleibt beim Scrollen sichtbar */
     left: 0; /* Links ausrichten */
@@ -67,7 +67,7 @@ main {
     align-items: center; /* Zentriert Kinder-Elemente horizontal */
     padding-top: 10px; /* Gibt der gesamten Sidebar einen Abstand nach oben */
     display: flex;
-  }
+}
   .logo img {
     max-height: 100%; /* Begrenzt die Höhe innerhalb des Containers */
     max-width: 100%; /* Begrenzt die Breite innerhalb des Containers */
@@ -82,7 +82,5 @@ main {
     margin-top: 20px; /* Fügt einen Abstand von 20px oben hinzu */
   }
 
-.nav a {
-  padding: 12px 0;
-}
+
 </style>
