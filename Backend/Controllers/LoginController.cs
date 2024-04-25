@@ -1,6 +1,7 @@
 ﻿using Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Mysqlx;
+using Org.BouncyCastle.Asn1.Ocsp;
 using System.ComponentModel.DataAnnotations;
 
 namespace Backend.Controllers
@@ -28,8 +29,15 @@ namespace Backend.Controllers
                 return BadRequest("Passwort ist falsch!");
             }
 
-            DBResult getid = Program.DB.GetID(value.Email);
-            return Ok(getid.result);
+            string? _token = Auth.JSONWebToken.GenerateJSONWebToken(value.Email);
+            if (_token == null) {
+                Responses.InternalServerError(Response);
+                Console.WriteLine("LoginController: Token Generation Failed");
+                return BadRequest("Token Generation Failed");
+            }
+
+            Responses.JsonOk(Response, new LoginResponse(_token));
+            return Ok();
 
         }
 
@@ -45,6 +53,13 @@ namespace Backend.Controllers
 
             public NetUserLogin() { }
 
+        }
+        public class LoginResponse
+        {
+            [Required] public string Token { get; set; }
+            public LoginResponse(string token) {
+                Token = token;
+            }
         }
     }
 }

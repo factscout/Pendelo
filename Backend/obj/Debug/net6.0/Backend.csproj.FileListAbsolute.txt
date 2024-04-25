@@ -58,3 +58,10 @@ C:\Users\Noah\Documents\Pendelo Projekt\Pendelo\Backend\obj\Debug\net6.0\refint\
 C:\Users\Noah\Documents\Pendelo Projekt\Pendelo\Backend\obj\Debug\net6.0\Backend.pdb
 C:\Users\Noah\Documents\Pendelo Projekt\Pendelo\Backend\obj\Debug\net6.0\Backend.genruntimeconfig.cache
 C:\Users\Noah\Documents\Pendelo Projekt\Pendelo\Backend\obj\Debug\net6.0\ref\Backend.dll
+C:\Users\Noah\Documents\Pendelo Projekt\Pendelo\Backend\bin\Debug\net6.0\JWT.dll
+C:\Users\Noah\Documents\Pendelo Projekt\Pendelo\Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Noah\Documents\Pendelo Projekt\Pendelo\Backend\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Noah\Documents\Pendelo Projekt\Pendelo\Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Noah\Documents\Pendelo Projekt\Pendelo\Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Noah\Documents\Pendelo Projekt\Pendelo\Backend\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Noah\Documents\Pendelo Projekt\Pendelo\Backend\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
