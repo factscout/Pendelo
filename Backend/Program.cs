@@ -1,11 +1,11 @@
 using Backend;
+using Backend.Auth;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Net;
-using static Org.BouncyCastle.Math.EC.ECCurve;
 
 internal class Program
 {
@@ -50,6 +50,8 @@ internal class Program
 
        
         DB = new DBManager();
+        Config.LoadConfig("config.txt");
+        Config.SaveConfig("config.txt");
 
         app.Run();
 

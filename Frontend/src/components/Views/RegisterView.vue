@@ -1,6 +1,40 @@
+<script setup>
+import { ref,computed } from 'vue';
+import { registerUser } from '@/api/request.js'
+
+    const username = ref("");
+    const password = ref("");
+    const email = ref("");
+
+    const errors = ref({
+        username: '', 
+        password: '', 
+        email: '', 
+    });
+
+    async function register () {
+        try {
+            await registerUser(username.value, password.value, email.value);
+            router.push('/login');
+        } catch (exception) {
+            console.error('login error', exception);
+            errors.value = exception.errors;
+        }
+
+        username.value = "";
+        password.value = "";
+        email.value = "";
+    }
+
+    const canSubmit = computed(() => {
+        return username.value === "" || password.value === "" || email.value === "";
+    });
+</script>
+
+
 <template>
 
-<form>
+<div>
   <div class="mb-3">
     <h3>Register New Account</h3>
     <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -18,7 +52,7 @@
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Check me out</label>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+  <button :disabled="canSubmit" @click="register" class="btn btn-primary">Submit</button>
+</div>
 
 </template>

@@ -1,4 +1,4 @@
-﻿using static Org.BouncyCastle.Math.EC.ECCurve;
+﻿using Backend.Auth;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

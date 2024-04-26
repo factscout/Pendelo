@@ -13,6 +13,7 @@ export function useAuth () {
     token.value = ''
     localStorage.removeItem(STORAGE_KEY)
   }
+  
 
   const isLoggedIn = computed(() => !!token.value)
 

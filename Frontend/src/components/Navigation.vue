@@ -1,6 +1,10 @@
 <script setup>
+import { useAuth } from '../api/auth'
+
+const { isLoggedIn, logout } = useAuth()
 
 </script>
+
 
 <template>
 <aside>
@@ -9,22 +13,24 @@
         <button type="button" class="btn btn-outline-dark rounded-pill">
             Dashboard
         </button>
-    </RouterLink>
-    <RouterLink to="/login" id="buttons" v-if="isLoggedIn == false">
-        <button type="button" class="btn btn-outline-dark rounded-pill">
-            Login
-        </button>
-    </RouterLink>
-    <a href="#" @click="logout" class="logout-link" v-if="isLoggedIn == true">
-        <button type="button" class="btn btn-outline-dark">
+    </RouterLink>   
+    <div v-if="isLoggedIn == false" style="padding-left: 70px;"> 
+        <RouterLink to="/register">
+            <button type="button" class="btn btn-outline-dark">
+                Register
+            </button>
+        </RouterLink>
+        <RouterLink to="/login" >
+            <button type="button" class="btn btn-outline-dark" >
+                Login
+            </button>
+        </RouterLink >
+    </div>
+    <a v-else href="#" @click="logout" class="logout-link" id="buttons">
+        <button type="button" class="btn btn-outline-danger btn-sm">
             Logout
         </button>
     </a>
-    <RouterLink to="/register" id="buttons">
-        <button type="button" class="btn btn-outline-dark rounded-pill">
-            Register
-        </button>
-    </RouterLink>
   </nav>
 </aside>
 

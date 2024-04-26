@@ -9,7 +9,7 @@ namespace Backend.Controllers
     [Route("api/[controller]")]
     public class UserLoginController : Controller
     {
-        [HttpPost("login")]
+        [HttpPost]
         public IActionResult CheckLogin([FromBody] NetUserLogin value) {
 
             DBResult result = Program.DB.CheckEmail(value.Email);
