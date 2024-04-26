@@ -1,6 +1,6 @@
 import { computed, ref } from 'vue'
 
-export const STORAGE_KEY = 'twitter_session_token'
+export const STORAGE_KEY = 'pendelo_session_token'
 
 const token = ref(localStorage.getItem(STORAGE_KEY))
 export function useAuth () {
