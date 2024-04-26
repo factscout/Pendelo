@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Gz+xCayFj7R95PLv/IMgu7E6MGO3D7Y9g1cspuyGoRLwpqNE9h4vOX6CBhsTSXlpDVdxTO2StDozseZwkOtjfg==",
+  "dgSpecHash": "yI3b2jMNs/5I1tzE8Qv+zNmB9DfXUFedTgJUMPo8tQ2CTx33eZkKTX6kQDBwqt2G4A9U9Bt+aysaBLSkuSN0sg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Noah\\Documents\\Pendelo Projekt\\Pendelo\\Backend\\Backend.csproj",
+  "projectFilePath": "C:\\Users\\Noah\\Documents\\SCRUM\\Pendelo\\Backend\\Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Noah\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\Noah\\.nuget\\packages\\google.protobuf\\3.25.1\\google.protobuf.3.25.1.nupkg.sha512",
