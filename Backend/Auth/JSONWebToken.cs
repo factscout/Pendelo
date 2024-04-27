@@ -26,6 +26,7 @@ namespace Backend.Auth
                     expires: DateTime.Now.AddMinutes(120),
                     signingCredentials: _credentials);
 
+
                 return new JwtSecurityTokenHandler().WriteToken(token);
             }
             catch (Exception _e) {

@@ -1,6 +1,7 @@
 ﻿using Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Mysqlx;
+using Newtonsoft.Json;
 using Org.BouncyCastle.Asn1.Ocsp;
 using System.ComponentModel.DataAnnotations;
 
@@ -30,14 +31,15 @@ namespace Backend.Controllers
             }
 
             string? _token = Auth.JSONWebToken.GenerateJSONWebToken(value.Email);
-            if (_token == null) {
+            var jsonresult = JsonConvert.SerializeObject(_token);
+
+            if (jsonresult == null) {
                 Responses.InternalServerError(Response);
                 Console.WriteLine("LoginController: Token Generation Failed");
                 return BadRequest("Token Generation Failed");
             }
 
-            Responses.JsonOk(Response, new LoginResponse(_token));
-            return Ok();
+            return Ok(new LoginResponse(jsonresult));
 
         }
 
