@@ -4,18 +4,22 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Backend.Controllers
 {
+    [Route("api/[controller]")]
     public class RegisterController : ControllerBase
     {
-        [HttpPost("register")]
-        public void Post(NetUserRegister _request) {  
+        [HttpPost]
+        public IActionResult Post([FromBody] NetUserRegister _request) {  
 
             DBResult res = Program.DB.IsUserTaken(_request.Username, _request.Email);
 
-            if (!res.success) return;
+            if (!res.success) return BadRequest("Usernname bereits vergeben");
 
-            if ((bool)res.result == true) return;
+            if ((bool)res.result == true) return BadRequest();
 
-            else Program.DB.CreateUser(_request.Username, _request.Email, _request.Password);
+            else {
+                Program.DB.CreateUser(_request.Username, _request.Email, _request.Password);
+                return Ok("Benutzer Erstellt");
+            }
         }
     }
     public class NetUserRegister
