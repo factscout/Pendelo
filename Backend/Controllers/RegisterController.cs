@@ -12,13 +12,13 @@ namespace Backend.Controllers
 
             DBResult res = Program.DB.IsUserTaken(_request.Username, _request.Email);
 
-            if (!res.success) return BadRequest("Usernname bereits vergeben");
+            if (!res.success) return BadRequest(new { Message = "Usernname bereits vergeben" });
 
-            if ((bool)res.result == true) return BadRequest();
+            if ((bool)res.result == true) return BadRequest(new { Message = "Database failed" });
 
             else {
                 Program.DB.CreateUser(_request.Username, _request.Email, _request.Password);
-                return Ok("Benutzer Erstellt");
+                return Ok(new { Message = "Benutzer Erstellt" });
             }
         }
     }
