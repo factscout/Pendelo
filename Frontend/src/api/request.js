@@ -4,7 +4,7 @@ const backend = '/api'
 const { token, setToken } = useAuth()
 
 export async function registerUser (username, password, email){
-    const response = await request(`/register`, {
+    const response = await request(`/Register`, {
         method: 'POST',
         body: JSON.stringify({ username, password, email }),
     })

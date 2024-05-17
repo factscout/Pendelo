@@ -4,9 +4,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Backend.Controllers
 {
+    [Route("api/[controller]")]
     public class RegisterController : ControllerBase
     {
-        [HttpPost("register")]
+        
+
+        [HttpPost]
         public void Post(NetUserRegister _request) {  
 
             DBResult res = Program.DB.IsUserTaken(_request.Username, _request.Email);

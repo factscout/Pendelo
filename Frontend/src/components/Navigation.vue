@@ -9,14 +9,14 @@ const { isLoggedIn, logout } = useAuth()
 <template>
 <aside>
     <nav class="nav" >
-    <RouterLink to="/" exact id="buttons">
+    <RouterLink to="/" exact >
         <button type="button" class="btn btn-outline-dark rounded-pill">
             Dashboard
         </button>
     </RouterLink>   
     <div v-if="isLoggedIn == false" style="padding-left: 70px;"> 
         <RouterLink to="/register">
-            <button type="button" class="btn btn-outline-dark">
+            <button type="button" class="btn btn-outline-dark" >
                 Register
             </button>
         </RouterLink>
@@ -39,18 +39,18 @@ const { isLoggedIn, logout } = useAuth()
 <style scoped>
 
 .router-link {
-  display: block; /* Lässt den RouterLink die gesamte verfügbare Breite einnehmen */
-  padding: 5px 10px; /* Optional: Fügt etwas Abstand innerhalb der Links hinzu */
+  display: block; 
+  padding: 5px 10px; 
 }
 #buttons{
     background-color: transparent !important;
     color: black !important;    
 }
-.router-link-active {
+.router-link {
     color: inherit;
     background-color: transparent;
 }
-.router-link-exact-active {
+.router-link-active{
     color: inherit;
     background-color: transparent;
 }

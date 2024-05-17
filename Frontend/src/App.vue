@@ -10,7 +10,7 @@ import Icon from "./assets/logo.png"
         <!-- Icon-->
         <img :src="Icon" alt="Logo" class="logo">
         <!-- Navigation -->
-        <Navigation  class="navigation--right"/>
+        <Navigation/>
       </aside>
       <main class="content">
         <RouterView/>
