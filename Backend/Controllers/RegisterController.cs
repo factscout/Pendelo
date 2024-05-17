@@ -7,18 +7,19 @@ namespace Backend.Controllers
     [Route("api/[controller]")]
     public class RegisterController : ControllerBase
     {
-        
-
         [HttpPost]
-        public void Post(NetUserRegister _request) {  
+        public IActionResult Post([FromBody] NetUserRegister _request) {  
 
             DBResult res = Program.DB.IsUserTaken(_request.Username, _request.Email);
 
-            if (!res.success) return;
+            if (!res.success) return BadRequest(new { Message = "Usernname bereits vergeben" });
 
-            if ((bool)res.result == true) return;
+            if ((bool)res.result == true) return BadRequest(new { Message = "Database failed" });
 
-            else Program.DB.CreateUser(_request.Username, _request.Email, _request.Password);
+            else {
+                Program.DB.CreateUser(_request.Username, _request.Email, _request.Password);
+                return Ok(new { Message = "Benutzer Erstellt" });
+            }
         }
     }
     public class NetUserRegister
