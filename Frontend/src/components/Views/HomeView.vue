@@ -58,8 +58,8 @@ export default {
   name: 'App',
   data() {
     return {
-      center: { lat: 37.4220, lng: -122.0841 }, // Zentrum deiner Karte
-      companies: [], // Leeres Array für die Unternehmen
+      center: { lat: 37.4220, lng: -122.0841 }, 
+      companies: [], 
     };
   },
   mounted() {
@@ -70,14 +70,14 @@ export default {
       fetch('URL_DEINER_FETCH_ANFRAGE')
         .then(response => response.json())
         .then(data => {
-          this.companies = data; // Speichere die erhaltenen Unternehmen in deiner Vue.js-Datenstruktur
+          this.companies = data; 
         })
         .catch(error => {
           console.error('Error fetching companies:', error);
         });
     },
     showInfo(companyName) {
-      // Hier kannst du Logik hinzufügen, um Informationen über das angeklickte Unternehmen anzuzeigen
+    
       console.log("Clicked on:", companyName);
     }
   }

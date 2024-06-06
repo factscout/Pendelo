@@ -1,20 +1,17 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using system.collections.generic;
+using System.Collections.Generic;
 /// <summary>
 /// Summary description for Class1
 /// </summary>
  [Route("api/[controller]")]
 [ApiController]
-public class CompanyController
+public class CompanyController : ControllerBase
 {
-    
-    public CompanyController()
-	{
-        [HttpGet]
-        public IActionResult Get()
-        {
+    [HttpGet]
+
+        public IActionResult Get() {
             Dictionary<string, (double latitude, double longitude)> companies = new Dictionary<string, (double, double)>();
 
             // Unternehmen hinzufügen
@@ -30,5 +27,7 @@ public class CompanyController
             companies.Add("Netflix", (37.2590, -121.9570));
             return Ok(companies);
         }
+    public CompanyController() { }
+
         
 }
