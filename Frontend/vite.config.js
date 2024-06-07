@@ -21,13 +21,12 @@ export default defineConfig({
         secure: false,
       }
     }
-  }
-},
-
-optimizeDeps: {
-  include: [
-    "@fawmi/vue-google-maps",
-    "fast-deep-equal",
-  ],
-},
+  },
+  optimizeDeps: {
+    include: [
+      "@fawmi/vue-google-maps",
+      "fast-deep-equal",
+    ],
+  },
+}
 )

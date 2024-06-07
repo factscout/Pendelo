@@ -1,88 +1,70 @@
+<script setup>
+import { ref, computed, onMounted } from 'vue';
+import VueDatePicker from '@vuepic/vue-datepicker';
+import { createRide } from '@/api/request.js'
+import { useAuth } from '@/api/auth'
+
+const { isLoggedIn, logout } = useAuth()
+
+const km = ref("");
+const datetime = ref("");
+const errors = ref({
+    km: '', 
+    datetime: '', 
+    });
+
+async function Rides () {
+        try {
+            await createRide(km.value, datetime.value);  
+        } catch (exception) {
+            console.error('register error', exception);
+            errors.value = exception.errors;
+            console.log(errors.km, errors.datetime);
+        }
+
+        km.value = "";
+        datetime.value = "";
+}
+
+const canSubmit = computed(() => {
+        return km.value === "" || datetime.value === "" ;
+    });
+
+</script>
+
+
 <template>
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div  class="col-md-8">
             <h3>Kilometer eintragen</h3>
-            <form>
+            <div>
                 <div class="mb-3">
                     <label for="distance" class="form-label">Gefahrene Kilometer
-                    <input type="number"  class="form-control" id="input-distance" placeholder="Kilometer">
+                    <input type="number" v-model="km" class="form-control" id="input-distance" placeholder="Kilometer">
+                    {{ errors.km }}
                 </label>
                 </div>
                 <div class="mb-3">
                     <label for="date" class="form-label">Datum</label>
-                    <input type="date" class="form-control" id="date">
+                    <VueDatePicker v-model="datetime" />
+                    {{ errors.datetime }}
                 </div>
-                <div class="mb-3">
-                    <label for="time" class="form-label">Uhrzeit</label>
-                    <input type="time" class="form-control" id="time">
-                </div>
-                <button type="submit" class="btn btn-primary">Eintragen</button>
-            </form>
+                <button :disabled="canSubmit" @click="Rides	" type="submit" class="btn btn-primary">Eintragen</button>
+              </div>
         </div>
+        
         <!-- Liste der gefahrenen Kilometer -->
         <div class="col-md-4 side-block text-end" id="sec-block">
             <h3>Gefahrene Kilometer</h3>
             <ul class="list-group">
-                <li class="list-group-item">10 km - 10.04.2024 - 15:00 Uhr</li>
-                <li class="list-group-item">5 km - 09.04.2024 - 10:30 Uhr</li>
-                <!-- Weitere Einträge -->
+              <li class="list-group-item" v-for="(entry, index) in entries" :key="index">{{ entry }}</li>
             </ul>  
         </div>
     </div>
 </div>
-  <div>
-    <GMapMap
-      :center="center"
-      :zoom="7"
-      map-type-id="terrain"
-      style="width: 100%; height: 400px"
-  >
-    <GMapCluster>
-      <GMapMarker
-          :key="index"
-          v-for="(company, index) in companies"
-          :position="{ lat: company.latitude, lng: company.longitude }"
-          :clickable="true"
-          :draggable="false"
-          @click="showInfo(company.name)"
-      />
-    </GMapCluster>
-  </GMapMap>
-  </div>
 </template>
 
-
-<script>
-export default {
-  name: 'App',
-  data() {
-    return {
-      center: { lat: 37.4220, lng: -122.0841 }, 
-      companies: [], 
-    };
-  },
-  mounted() {
-    this.fetchCompanies();
-  },
-  methods: {
-    fetchCompanies() {
-      fetch('URL_DEINER_FETCH_ANFRAGE')
-        .then(response => response.json())
-        .then(data => {
-          this.companies = data; 
-        })
-        .catch(error => {
-          console.error('Error fetching companies:', error);
-        });
-    },
-    showInfo(companyName) {
-    
-      console.log("Clicked on:", companyName);
-    }
-  }
-}
-</script>
 <style>
   body {
     margin: 0;

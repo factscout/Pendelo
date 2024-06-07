@@ -25,6 +25,9 @@ const { isLoggedIn, logout } = useAuth()
                 Login
             </button>
         </RouterLink >
+        <RouterLink to="/bikes" exact >
+        
+    </RouterLink> 
     </div>
     <a v-else href="#" @click="logout" class="logout-link" id="buttons">
         <button type="button" class="btn btn-outline-danger btn-sm">

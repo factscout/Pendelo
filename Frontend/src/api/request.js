@@ -1,4 +1,5 @@
 import { useAuth } from './auth'
+
 const backend = '/api'
 
 const { token, setToken } = useAuth()
@@ -43,6 +44,13 @@ export async function checkAuth () {
         setToken('')
         return false
     }
+}
+
+export async function createRide (km, datetime){
+    const response = await request(`/Rides`, {
+        method: 'POST',
+        body: JSON.stringify({ km, datetime }),
+    })
 }
 
 async function request(url, options = {}) {

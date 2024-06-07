@@ -13,7 +13,7 @@ public class CompanyController : ControllerBase
 
         public IActionResult Get() {
             Dictionary<string, (double latitude, double longitude)> companies = new Dictionary<string, (double, double)>();
-
+            
             // Unternehmen hinzufügen
             companies.Add("Google", (37.4220, -122.0841));
             companies.Add("Apple", (37.3349, -122.0090));
