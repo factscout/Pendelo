@@ -4,6 +4,7 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography;
+using System.Transactions;
 
 namespace Backend
 {
@@ -26,9 +27,9 @@ namespace Backend
             connection.Close();
         }
 
-        //UserRegion
+        //User
 
-        //FOR REGISTER
+        // REGISTER
         public DBResult CreateUser(string username, string email, string password) {
             try {
 
@@ -69,7 +70,7 @@ namespace Backend
             }
         }
 
-        //FOR LOGIN
+        // LOGIN
         public DBResult CheckEmail(string email) {
             try {
                 string query = "SELECT * FROM pnd_users WHERE email = @Email";
@@ -113,6 +114,46 @@ namespace Backend
                     }
                 }
             return check;
-        }    
+        }
+
+        public int? GetUserIDFromUsername(string _username) {
+
+            string _sql = "SELECT user_id FROM pnd_users WHERE username = @username";
+
+            int? _userID = null;
+
+            using (MySqlCommand _command = new MySqlCommand(_sql, connection)) {
+                _command.Parameters.AddWithValue("@username", _username);
+
+                using (MySqlDataReader _reader = _command.ExecuteReader()) {
+                    if (_reader.Read()) {
+                        _userID = _reader.GetInt32("user_id");
+                    }
+                }
+            }
+
+           
+
+            return _userID;
+        }
+
+        //RIDES
+
+        public void CreateTransaction(int _id, Ride ride) {
+        
+            string _sql = "INSERT INTO `pendelo`.`pnd_rides`(`user_id`,`km`,`datetime`" +
+                "VALUES (@name, @transaction, @startDate, @endDate, @userid);";
+
+            using (MySqlCommand _command = new MySqlCommand(_sql, connection)) {
+                _command.Parameters.AddWithValue("@km", ride.Km);
+                _command.Parameters.AddWithValue("@datetime", ride.Datetime);
+                _command.Parameters.AddWithValue("@userid", _id);
+
+                _command.ExecuteNonQuery();
+            }
+
+            
+        }
+
     }
 }

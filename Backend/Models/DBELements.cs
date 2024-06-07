@@ -26,9 +26,6 @@ namespace Backend.Models
         public int Id { get; set; }
 
         [Required]
-        public int UserId { get; set; } 
-
-        [Required]
         public float Km { get; set; } 
 
         [Required]
@@ -36,10 +33,10 @@ namespace Backend.Models
 
         public Ride(int id, int userId, float km, DateTime datetime) {
             Id = id;
-            UserId = userId;
             Km = km;
             Datetime = datetime;
         }
+        public Ride() { }
     }
 
 

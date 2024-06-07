@@ -31,11 +31,60 @@
         </div>
     </div>
 </div>
-
-
-
+  <div>
+    <GMapMap
+      :center="center"
+      :zoom="7"
+      map-type-id="terrain"
+      style="width: 100%; height: 400px"
+  >
+    <GMapCluster>
+      <GMapMarker
+          :key="index"
+          v-for="(company, index) in companies"
+          :position="{ lat: company.latitude, lng: company.longitude }"
+          :clickable="true"
+          :draggable="false"
+          @click="showInfo(company.name)"
+      />
+    </GMapCluster>
+  </GMapMap>
+  </div>
 </template>
 
-<style scoped>
 
+<script>
+export default {
+  name: 'App',
+  data() {
+    return {
+      center: { lat: 37.4220, lng: -122.0841 }, 
+      companies: [], 
+    };
+  },
+  mounted() {
+    this.fetchCompanies();
+  },
+  methods: {
+    fetchCompanies() {
+      fetch('URL_DEINER_FETCH_ANFRAGE')
+        .then(response => response.json())
+        .then(data => {
+          this.companies = data; 
+        })
+        .catch(error => {
+          console.error('Error fetching companies:', error);
+        });
+    },
+    showInfo(companyName) {
+    
+      console.log("Clicked on:", companyName);
+    }
+  }
+}
+</script>
+<style>
+  body {
+    margin: 0;
+  }
 </style>
